@@ -41,8 +41,13 @@ bool SharedMemoryQueue::OpenOrCreate(const char* name)
 {
 	try
 	{
+		// The owner calls this during a full server startup. Boost message queues can
+		// survive an unclean Windows shutdown and retain an abandoned internal lock,
+		// which causes the next Ebenezer startup to hang indefinitely. Recreate the
+		// owner's queue so every clean startup begins with valid synchronization state.
+		message_queue::remove(name);
 		_queue = std::make_unique<message_queue_impl>(
-			open_or_create, name, MAX_NUM_MSG, MAX_MSG_SIZE);
+			create_only, name, MAX_NUM_MSG, MAX_MSG_SIZE);
 
 		// As with previous behaviour, as the expected 'creator' of the queue, flush it, even if we just reopened it.
 		FlushQueue();

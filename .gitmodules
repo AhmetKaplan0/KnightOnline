@@ -4,7 +4,7 @@
 	shallow = true
 [submodule "assets/Client"]
 	path = assets/Client
-	url = https://github.com/Open-KO/ko-client-assets
+	url = https://github.com/AhmetKaplan0/ko-client-assets
 	branch = openko-1298
 	shallow = true
 [submodule "deps/zlib"]
@@ -14,7 +14,7 @@
 	shallow = true
 [submodule "deps/db-models"]
 	path = deps/db-models
-	url = https://github.com/Open-KO/OpenKO-db-models
+	url = https://github.com/AhmetKaplan0/OpenKO-db-models
 	branch = main
 	shallow = true
 [submodule "deps/nanodbc"]
